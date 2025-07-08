@@ -187,7 +187,8 @@ $services = getAllServices();
                                 <th>ID</th>
                                 <th>Image</th>
                                 <th>Name</th>
-                                <th>Price/Session</th>
+                                <th>NCR ₹</th>
+                                <th>Other ₹</th>
                                 <th>Services</th>
                                 <th>Status</th>
                                 <th>Created</th>
@@ -214,7 +215,8 @@ $services = getAllServices();
                                             <?php echo $therapist['weight'] ? ' W: ' . $therapist['weight'] : ''; ?>
                                         </small>
                                     </td>
-                                    <td><?php echo formatPrice($therapist['price_per_session']); ?></td>
+                                    <td><?php echo formatPrice($therapist['price_ncr'] ?? $therapist['price_per_session']); ?></td>
+                                    <td><?php echo formatPrice($therapist['price_other'] ?? $therapist['price_per_session']); ?></td>
                                     <td>
                                         <?php foreach (array_slice($therapistServices, 0, 2) as $service): ?>
                                             <span class="badge bg-light text-dark me-1"><?php echo htmlspecialchars($service['name']); ?></span>
@@ -376,6 +378,8 @@ $extraScripts = '<script>
                     document.getElementById("therapistId").value = id;
                     document.getElementById("therapistName").value = data.therapist.name;
                     document.getElementById("therapistPrice").value = data.therapist.price_per_session;
+                    document.getElementById("therapistPriceNcr").value = data.therapist.price_ncr || data.therapist.price_per_session;
+                    document.getElementById("therapistPriceOther").value = data.therapist.price_other || data.therapist.price_per_session;
                     document.getElementById("therapistHeight").value = data.therapist.height || "";
                     document.getElementById("therapistWeight").value = data.therapist.weight || "";
                     document.getElementById("therapistDescription").value = data.therapist.description || "";

@@ -45,6 +45,16 @@ $services = getAllServices();
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="container">
+        <!-- Service Banner -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-info border-0 rounded-pill text-center py-2 mb-0" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3);">
+                    <i class="bi bi-geo-alt me-2"></i>
+                    <strong>Book Spa Services from Anywhere in India</strong> - Professional therapists available in Delhi-NCR & across all major cities
+                </div>
+            </div>
+        </div>
+        
         <div class="row align-items-center">
             <div class="col-lg-6 hero-content">
                 <h1 class="display-4 fw-bold mb-4 fade-in">Welcome to Hammam Spa</h1>

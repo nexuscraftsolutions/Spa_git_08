@@ -1,13 +1,14 @@
 /* Region price indicator in navbar */
 .region-price-indicator {
-    margin-right: 1rem;
+    flex-shrink: 0;
 }
 
 .region-price-indicator .btn {
     border-radius: 20px;
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .region-price-indicator .btn:hover {
@@ -97,11 +98,33 @@
 /* Responsive design */
 @media (max-width: 768px) {
     .region-price-indicator {
-        margin-right: 0.5rem;
+        margin-right: 0;
     }
     
     .region-price-indicator .btn {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .region-price-indicator .btn span {
+        display: none;
+    }
+    
+    .region-price-indicator .btn::after {
+        content: 'Region';
+        font-size: 0.75rem;
     }
 }
+
+@media (max-width: 576px) {
+    .region-price-indicator .btn {
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .region-price-indicator .btn::after {
+        content: '';
+    }
+    
+    .region-price-indicator .btn i {
+        margin: 0;
+    }

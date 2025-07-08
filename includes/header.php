@@ -32,40 +32,61 @@
     <?php if (!isset($hideNavbar) || !$hideNavbar): ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="<?php echo SITE_URL; ?>">
+            <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="<?php echo SITE_URL; ?>">
                 <img src="<?php echo SITE_URL; ?>/uploads/website/logo.png" width="150px">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-auto ms-3">
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo SITE_URL; ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SITE_URL; ?>/models.php">Therapists</a>
+                        <a class="nav-link" href="<?php echo SITE_URL; ?>/models.php">Models</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo SITE_URL; ?>/services.php">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SITE_URL; ?>/therapies.php">Therapies</a>
+                        <a class="nav-link d-none d-lg-block" href="<?php echo SITE_URL; ?>/therapies.php">Therapies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SITE_URL; ?>/about.php">About</a>
+                        <a class="nav-link d-none d-xl-block" href="<?php echo SITE_URL; ?>/about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SITE_URL; ?>/contact.php">Contact</a>
+                        <a class="nav-link d-none d-xl-block" href="<?php echo SITE_URL; ?>/contact.php">Contact</a>
+                    </li>
+                    <!-- Mobile dropdown for hidden items -->
+                    <li class="nav-item dropdown d-lg-none">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            More
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo SITE_URL; ?>/therapies.php">Therapies</a></li>
+                            <li><a class="dropdown-item" href="<?php echo SITE_URL; ?>/about.php">About</a></li>
+                            <li><a class="dropdown-item" href="<?php echo SITE_URL; ?>/contact.php">Contact</a></li>
+                        </ul>
+                    </li>
+                    <!-- Tablet dropdown for some hidden items -->
+                    <li class="nav-item dropdown d-none d-lg-block d-xl-none">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo SITE_URL; ?>/about.php">About</a></li>
+                            <li><a class="dropdown-item" href="<?php echo SITE_URL; ?>/contact.php">Contact</a></li>
+                        </ul>
                     </li>
                 </ul>
                 
                 <!-- Region Price Indicator -->
-                <div class="region-price-indicator">
+                <div class="region-price-indicator me-2">
                     <button class="btn btn-outline-primary btn-sm" id="regionPriceBtn" onclick="openRegionModal()">
-                        <i class="bi bi-geo-alt me-1"></i>
+                        <i class="bi bi-building me-1"></i>
                         <span id="currentRegionText">Delhi-NCR</span>
-                        <i class="bi bi-chevron-down ms-1"></i>
+                        <i class="bi bi-chevron-down ms-1 d-none d-sm-inline"></i>
                     </button>
                 </div>
                 
@@ -77,13 +98,16 @@
                             </div>
                             <div class="dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-                                    <div class="text-start">
+                                    <div class="text-start d-none d-md-block">
                                         <div class="fw-semibold">Hi, <?php echo htmlspecialchars(explode(' ', $_SESSION['user_name'])[0]); ?></div>
                                         <?php if (!empty($_SESSION['user_city'])): ?>
                                             <small class="text-muted">
                                                 <i class="bi bi-geo-alt me-1"></i><?php echo htmlspecialchars($_SESSION['user_city']); ?>
                                             </small>
                                         <?php endif; ?>
+                                    </div>
+                                    <div class="d-md-none">
+                                        <i class="bi bi-person-circle fs-5"></i>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -110,12 +134,12 @@
                         <!-- Desktop Login/Signup -->
                         <li class="nav-item d-none d-lg-block">
                             <a class="nav-link" href="<?php echo SITE_URL; ?>/login.php">
-                                <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                                <i class="bi bi-box-arrow-in-right me-1 d-none d-xl-inline"></i>Login
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-block">
-                            <a class="nav-link btn btn-primary text-white ms-2 px-3" href="<?php echo SITE_URL; ?>/signup.php">
-                                <i class="bi bi-person-plus me-1"></i>Sign Up
+                            <a class="nav-link btn btn-primary text-white ms-1 px-3" href="<?php echo SITE_URL; ?>/signup.php">
+                                <i class="bi bi-person-plus me-1 d-none d-xl-inline"></i>Sign Up
                             </a>
                         </li>
                         
@@ -192,14 +216,14 @@
                     <p class="text-muted mb-3">Choose your region to see accurate pricing:</p>
                     <div class="d-grid gap-2">
                         <button class="btn btn-outline-primary region-select-btn" data-region="ncr">
-                            <i class="bi bi-building me-2"></i>
+                            <i class="bi bi-buildings me-2"></i>
                             <div>
                                 <strong>Delhi-NCR</strong>
                                 <br><small>Delhi, Gurgaon, Noida, Faridabad</small>
                             </div>
                         </button>
                         <button class="btn btn-outline-primary region-select-btn" data-region="other">
-                            <i class="bi bi-geo-alt me-2"></i>
+                            <i class="bi bi-geo-alt-fill me-2"></i>
                             <div>
                                 <strong>Rest of India</strong>
                                 <br><small>All other cities</small>
